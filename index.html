@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cotação Rápida | CG Corretora</title>
+    
+    <style>
+        /* Reset básico para remover margens do navegador */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Trava a rolagem da página "branca" */
+            background-color: #ffffff; /* Cor de fundo */
+        }
+
+        /* O container do Typebot ocupa 100% da tela real */
+        typebot-standard {
+            width: 100%;
+            height: 100vh; /* Altura total */
+            height: 100dvh; /* O Segredo: Altura dinâmica para mobile (ignora barra do navegador) */
+        }
+    </style>
+</head>
+<body>
+
+    <typebot-standard style="width: 100%; height: 100%;"></typebot-standard>
+
+    <script type="module">
+        import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0.2/dist/web.js'
+
+        Typebot.initStandard({
+            typebot: "Agente ", // <--- 🚨 COLOCAR SEU NOME DO BOT AQUI
+            apiHost: "https://typebot.io", // Mude se usar servidor próprio
+        });
+    </script>
+
+</body>
+</html>
