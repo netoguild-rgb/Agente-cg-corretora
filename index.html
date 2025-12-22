@@ -7,86 +7,93 @@
     
     <title>Proteção Familiar | CG Corretora</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA DE CORES (LARANJA PREMIUM) --- */
+        /* --- CONFIGURAÇÃO DE CORES (LARANJA PREMIUM) --- */
         :root {
-            --primary-orange: #FF6B00; /* Laranja vibrante para ação */
-            --dark-orange: #E65100;    /* Laranja mais escuro para hover */
-            --bg-app: #F7F8FA;         /* Fundo do chat */
-            --text-dark: #111827;      /* Texto quase preto */
+            --primary-orange: #FF6B00;
+            --dark-orange: #E65100;
+            --bg-app: #F7F8FA;
+            --text-dark: #111827;
         }
 
         /* --- RESET GERAL --- */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: var(--bg-app); font-family: 'Inter', sans-serif; overflow: hidden; }
+        body, html { 
+            margin: 0; padding: 0; 
+            width: 100%; height: 100%; 
+            background-color: var(--bg-app); 
+            font-family: 'Inter', sans-serif; 
+            overflow: hidden; 
+        }
 
-        /* --- 1. TELA DE CAPA (A ISCA) --- */
+        /* --- 1. TELA DE CAPA (ISCA) --- */
         #welcome-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 9999;
-            /* 🚨 IMPORTANTE: O arquivo front.jpg deve estar na mesma pasta */
-            background-image: url('front.jpg'); 
+            
+            /* 🚨 AQUI ESTÁ A SUA IMAGEM LOCAL */
+            background-image: url('capa.png'); 
+            
             background-size: cover;
             background-position: center;
-            /* Filtro para escurecer a imagem e destacar o texto branco */
-            background-color: #0C0C0C; 
+            background-color: #0C0C0C; /* Fundo preto caso a imagem demore */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Conteúdo embaixo */
+            justify-content: flex-end; /* Texto embaixo */
             padding: 30px;
-            padding-bottom: 70px; /* Espaço extra para iPhone */
-            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+            padding-bottom: 70px;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        /* Gradiente escuro para garantir leitura sobre qualquer imagem */
+        /* Filtro escuro para leitura perfeita */
         .overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 100%);
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.1) 100%);
             z-index: -1;
         }
 
-        /* --- SLOGAN MODERNO --- */
+        /* --- SLOGAN (TIPOGRAFIA) --- */
         .hero-title {
             color: white;
-            font-size: 36px; /* Fonte maior para impacto */
-            font-weight: 800; /* Extra bold */
-            line-height: 1.1;
-            margin-bottom: 40px; /* Espaço até o botão */
-            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
-            letter-spacing: -0.02em;
-        }
-        /* Destaque em Laranja nas palavras-chave */
-        .highlight {
-            color: var(--primary-orange);
-            display: inline-block; /* Evita quebra estranha */
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 40px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            letter-spacing: -0.5px;
         }
         
-        /* --- BOTÃO PULSANTE (LARANJA) --- */
+        .highlight {
+            color: var(--primary-orange); /* Laranja */
+            display: inline-block;
+        }
+
+        /* --- BOTÃO DE AÇÃO (CORRIGIDO) --- */
         .cta-button {
             background-color: var(--primary-orange);
             color: white;
             border: none;
-            padding: 20px; /* Botão mais alto e imponente */
+            padding: 20px;
             font-size: 18px;
             font-weight: 700;
             border-radius: 16px;
             width: 100%;
             cursor: pointer;
-            /* Sombra laranja brilhante */
-            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
-            display: flex; justify-content: center; align-items: center; gap: 10px;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.35);
+            display: flex; justify-content: center; align-items: center; gap: 12px;
             position: relative; overflow: hidden;
             animation: pulse-orange 2s infinite;
             transition: all 0.2s;
-            text-transform: uppercase; /* Mais autoridade */
+            text-transform: uppercase;
             letter-spacing: 0.5px;
+            outline: none; /* Sem contorno feio */
         }
         
         .cta-button:active { transform: scale(0.98); background-color: var(--dark-orange); }
-        .cta-button svg { width: 24px; height: 24px; } /* Ícone */
+        .cta-button svg { width: 22px; height: 22px; }
 
         @keyframes pulse-orange {
             0% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.7); }
@@ -94,7 +101,7 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0); }
         }
 
-        /* --- 2. HEADER DO APP (Pós-clique) --- */
+        /* --- 2. HEADER DO APP (Invisível no início) --- */
         .app-header {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px;
             background: rgba(255, 255, 255, 0.95);
@@ -104,19 +111,23 @@
             padding: 0 20px;
             padding-top: env(safe-area-inset-top);
             z-index: 50;
-            opacity: 0; transition: opacity 0.5s ease 0.5s;
+            opacity: 0; transition: opacity 0.5s ease 0.6s;
         }
 
         .brand-info { display: flex; align-items: center; gap: 10px; }
-        /* Logo Square agora é Laranja */
         .brand-logo { width:32px; height:32px; background: var(--primary-orange); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size: 14px; }
         .status-dot { width: 8px; height: 8px; background-color: #10B981; border-radius: 50%; animation: pulse-dot 2s infinite; }
         @keyframes pulse-dot { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+        
         .brand-name { font-weight: 700; color: var(--text-dark); font-size: 16px; letter-spacing: -0.5px; }
         .brand-sub { font-size: 11px; color: #6B7280; font-weight: 500; }
 
-        /* --- 3. O CHAT --- */
-        typebot-standard { width: 100%; height: 100dvh; padding-top: 60px; z-index: 1; }
+        /* --- 3. CONTAINER DO CHAT --- */
+        typebot-standard {
+            width: 100%; height: 100dvh;
+            padding-top: 60px; /* Espaço do header */
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
@@ -129,8 +140,8 @@
         </div>
 
         <button class="cta-button" onclick="iniciarSistema()">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd" /></svg>
-            Iniciar cotação grátis
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.352-.272-2.636-.759-3.801a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.07-7.877-3.08zM12 17.25a5.25 5.25 0 110-10.5 5.25 5.25 0 010 10.5z" clip-rule="evenodd" /></svg>
+            Iniciar Cotação Grátis
         </button>
     </div>
 
@@ -157,24 +168,26 @@
             if (botCarregado) return;
             botCarregado = true;
 
-            // Feedback visual no botão (Fica cinza escuro)
+            // 1. Muda estado do botão (Feedback)
             const btn = document.querySelector('.cta-button');
-            btn.innerHTML = "Aguarde um momento... 🔄";
-            btn.style.backgroundColor = "#1F2937"; 
+            btn.innerHTML = "Carregando sistema... 🔄";
+            btn.style.backgroundColor = "#1F2937"; // Cinza escuro
             btn.style.boxShadow = "none";
             btn.style.animation = "none";
 
-            // 🚨 INICIA O TYPEBOT - COLOQUE SEU ID ABAIXO 🚨
+            // 2. INICIA O TYPEBOT (Aqui gasta o crédito)
+            // ⚠️ COLOQUE SEU ID AQUI ABAIXO ⚠️
             Typebot.initStandard({
                 typebot: "agente-tph3rnk", 
                 apiHost: "https://typebot.io",
             });
 
-            // Tempo para carregar e subir a tela
+            // 3. Aguarda 1.2s e sobe a tela
             setTimeout(() => {
                 document.getElementById('welcome-screen').style.transform = 'translateY(-100%)';
                 document.getElementById('app-header').style.opacity = '1';
-                // Muda a barra do navegador para branco (estilo app)
+                
+                // Muda a cor da barra do navegador para branco
                 document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
             }, 1200);
         }
