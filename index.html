@@ -3,84 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#000000"> <title>Cotação Digital | CG Corretora</title>
+    <meta name="theme-color" content="#0C0C0C"> 
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <title>Proteção Familiar | CG Corretora</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- RESET GERAL E ESTRUTURA --- */
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
-        body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            background-color: #F7F8FA; /* Fundo do App */
-            font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Trava rolagem externa */
+        /* --- PALETA DE CORES (LARANJA PREMIUM) --- */
+        :root {
+            --primary-orange: #FF6B00; /* Laranja vibrante para ação */
+            --dark-orange: #E65100;    /* Laranja mais escuro para hover */
+            --bg-app: #F7F8FA;         /* Fundo do chat */
+            --text-dark: #111827;      /* Texto quase preto */
         }
+
+        /* --- RESET GERAL --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: var(--bg-app); font-family: 'Inter', sans-serif; overflow: hidden; }
 
         /* --- 1. TELA DE CAPA (A ISCA) --- */
         #welcome-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 9999;
-            /* IMAGEM DE FUNDO: Troque o link abaixo se quiser outra imagem */
-            background-image: url('https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=1000&auto=format&fit=crop'); 
+            /* 🚨 IMPORTANTE: O arquivo front.jpg deve estar na mesma pasta */
+            background-image: url('front.jpg'); 
             background-size: cover;
             background-position: center;
+            /* Filtro para escurecer a imagem e destacar o texto branco */
+            background-color: #0C0C0C; 
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Joga o conteúdo para baixo */
+            justify-content: flex-end; /* Conteúdo embaixo */
             padding: 30px;
-            padding-bottom: 60px;
-            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1); /* Animação de subida */
+            padding-bottom: 70px; /* Espaço extra para iPhone */
+            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        /* Sombra escura para ler o texto */
+        /* Gradiente escuro para garantir leitura sobre qualquer imagem */
         .overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 100%);
             z-index: -1;
         }
 
-        /* Tipografia da Capa */
+        /* --- SLOGAN MODERNO --- */
         .hero-title {
-            color: white; font-size: 32px; font-weight: 800; line-height: 1.1; margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            color: white;
+            font-size: 36px; /* Fonte maior para impacto */
+            font-weight: 800; /* Extra bold */
+            line-height: 1.1;
+            margin-bottom: 40px; /* Espaço até o botão */
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            letter-spacing: -0.02em;
         }
-        .hero-title span { color: #2563EB; } /* Azul destaque */
+        /* Destaque em Laranja nas palavras-chave */
+        .highlight {
+            color: var(--primary-orange);
+            display: inline-block; /* Evita quebra estranha */
+        }
         
-        .hero-subtitle {
-            color: #E5E7EB; font-size: 16px; margin-bottom: 30px; line-height: 1.5; font-weight: 400; opacity: 0.9;
-        }
-
-        /* Botão Pulsante (CTA) */
+        /* --- BOTÃO PULSANTE (LARANJA) --- */
         .cta-button {
-            background-color: #2563EB; /* Azul Royal */
+            background-color: var(--primary-orange);
             color: white;
             border: none;
-            padding: 18px;
+            padding: 20px; /* Botão mais alto e imponente */
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             border-radius: 16px;
             width: 100%;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+            /* Sombra laranja brilhante */
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
             display: flex; justify-content: center; align-items: center; gap: 10px;
             position: relative; overflow: hidden;
-            animation: pulse-btn 2s infinite;
+            animation: pulse-orange 2s infinite;
             transition: all 0.2s;
+            text-transform: uppercase; /* Mais autoridade */
+            letter-spacing: 0.5px;
         }
         
-        .cta-button:active { transform: scale(0.98); }
+        .cta-button:active { transform: scale(0.98); background-color: var(--dark-orange); }
+        .cta-button svg { width: 24px; height: 24px; } /* Ícone */
 
-        @keyframes pulse-btn {
-            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        @keyframes pulse-orange {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 107, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 0, 0); }
         }
 
-        /* --- 2. HEADER DO APP (Invisível no início) --- */
+        /* --- 2. HEADER DO APP (Pós-clique) --- */
         .app-header {
             position: fixed; top: 0; left: 0; width: 100%; height: 60px;
             background: rgba(255, 255, 255, 0.95);
@@ -88,26 +102,21 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 20px;
-            padding-top: env(safe-area-inset-top); /* Respeita o Notch do iPhone */
+            padding-top: env(safe-area-inset-top);
             z-index: 50;
-            opacity: 0; transition: opacity 0.5s ease 0.5s; /* Delay para aparecer suave */
+            opacity: 0; transition: opacity 0.5s ease 0.5s;
         }
 
         .brand-info { display: flex; align-items: center; gap: 10px; }
+        /* Logo Square agora é Laranja */
+        .brand-logo { width:32px; height:32px; background: var(--primary-orange); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size: 14px; }
         .status-dot { width: 8px; height: 8px; background-color: #10B981; border-radius: 50%; animation: pulse-dot 2s infinite; }
         @keyframes pulse-dot { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
-        
-        .brand-name { font-weight: 700; color: #111827; font-size: 16px; letter-spacing: -0.5px; }
+        .brand-name { font-weight: 700; color: var(--text-dark); font-size: 16px; letter-spacing: -0.5px; }
         .brand-sub { font-size: 11px; color: #6B7280; font-weight: 500; }
 
-        /* --- 3. O CHAT (TYPEBOT) --- */
-        typebot-standard {
-            width: 100%;
-            height: 100vh; /* Fallback */
-            height: 100dvh; /* Altura real mobile */
-            padding-top: 60px; /* Espaço do header */
-            z-index: 1;
-        }
+        /* --- 3. O CHAT --- */
+        typebot-standard { width: 100%; height: 100dvh; padding-top: 60px; z-index: 1; }
     </style>
 </head>
 <body>
@@ -116,21 +125,18 @@
         <div class="overlay"></div>
         
         <div class="hero-title">
-            Não feche seu seguro<br>antes de ver <span>isso.</span>
-        </div>
-        
-        <div class="hero-subtitle">
-            Nossa Inteligência Artificial compara 15 seguradoras em segundos e encontra o menor preço para o seu perfil.
+            Garanta a segurança do <span class="highlight">sorriso</span> de quem você <span class="highlight">Ama.</span>
         </div>
 
         <button class="cta-button" onclick="iniciarSistema()">
-            Iniciar Cotação Grátis 🚀
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd" /></svg>
+            Iniciar cotação grátis
         </button>
     </div>
 
     <div class="app-header" id="app-header">
         <div class="brand-info">
-            <div style="width:32px; height:32px; background:#0042DA; border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size: 14px;">CG</div>
+            <div class="brand-logo">CG</div>
             <div>
                 <div class="brand-name">CG Corretora</div>
                 <div class="brand-sub">
@@ -145,35 +151,30 @@
     <script type="module">
         import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0.2/dist/web.js'
 
-        // Variável de controle para não abrir duas vezes
         let botCarregado = false;
 
         window.iniciarSistema = function() {
             if (botCarregado) return;
             botCarregado = true;
 
-            // 1. Feedback Visual no Botão
+            // Feedback visual no botão (Fica cinza escuro)
             const btn = document.querySelector('.cta-button');
-            btn.innerHTML = "Carregando sistema... 🔄";
-            btn.style.backgroundColor = "#111827"; // Fica preto (status carregando)
+            btn.innerHTML = "Aguarde um momento... 🔄";
+            btn.style.backgroundColor = "#1F2937"; 
+            btn.style.boxShadow = "none";
+            btn.style.animation = "none";
 
-            // 2. INICIA O TYPEBOT (Aqui é onde gasta o crédito)
-            // 🚨 IMPORTANTE: Substitua o ID abaixo pelo seu
+            // 🚨 INICIA O TYPEBOT - COLOQUE SEU ID ABAIXO 🚨
             Typebot.initStandard({
                 typebot: "agente-tph3rnk", 
                 apiHost: "https://typebot.io",
             });
 
-            // 3. Aguarda 1.2 segundos para o bot carregar a primeira mensagem
-            // e então faz a animação de subir a tela
+            // Tempo para carregar e subir a tela
             setTimeout(() => {
-                // Sobe a tela de capa
                 document.getElementById('welcome-screen').style.transform = 'translateY(-100%)';
-                
-                // Mostra o Header
                 document.getElementById('app-header').style.opacity = '1';
-                
-                // Muda a cor da barra do navegador para Branco (Estilo App)
+                // Muda a barra do navegador para branco (estilo app)
                 document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
             }, 1200);
         }
