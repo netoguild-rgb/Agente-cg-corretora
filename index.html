@@ -2,6 +2,107 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0042DA">
+
+    <title>Cotação Digital | CG Corretora</title>
+
+    <style>
+        /* Fonte Moderna (Inter) - Igual aos Apps atuais */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        /* Reset e Estrutura */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Trava rolagem elástica do iOS */
+        }
+
+        /* O Container do Typebot */
+        typebot-standard {
+            width: 100%;
+            height: 100vh; /* Fallback */
+            height: 100dvh; /* Altura Dinâmica Real (Mobile Moderno) */
+            /* Padding para respeitar o Notch (Franja) do iPhone */
+            padding-top: env(safe-area-inset-top); 
+            padding-bottom: env(safe-area-inset-bottom);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Tela de Carregamento Premium (Splash Screen) */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0042DA, #002884); /* Degradê Profissional */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            transition: opacity 0.6s ease-out;
+        }
+
+        /* Animação de Pulso (Logo) */
+        .pulse {
+            width: 60px; height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            animation: pulse-animation 1.5s infinite ease-in-out;
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .loading-text {
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        @keyframes pulse-animation {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="pulse"></div>
+        <div class="loading-text">CARREGANDO SISTEMA SEGURO...</div>
+    </div>
+
+    <typebot-standard></typebot-standard>
+
+    <script type="module">
+        import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0.2/dist/web.js'
+
+        Typebot.initStandard({
+            typebot: "agente-tph3rnk", // <--- 🚨 COLOQUE SEU ID AQUI
+            apiHost: "https://typebot.io",
+        });
+
+        // Efeito de transição suave ao carregar
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 600);
+        }, 2000); 
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Cotação Rápida | CG Corretora</title>
     
