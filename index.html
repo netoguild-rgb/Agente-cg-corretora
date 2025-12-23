@@ -34,7 +34,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: 9999;
             
-            /* 🚨 AQUI ESTÁ A SUA IMAGEM LOCAL */
+            /* 🚨 CERTIFIQUE-SE DE QUE O ARQUIVO capa.png ESTÁ NA MESMA PASTA */
             background-image: url('capa.png'); 
             
             background-size: cover;
@@ -71,7 +71,7 @@
             display: inline-block;
         }
 
-        /* --- BOTÃO DE AÇÃO (CORRIGIDO) --- */
+        /* --- BOTÃO DE AÇÃO --- */
         .cta-button {
             background-color: var(--primary-orange);
             color: white;
@@ -89,7 +89,7 @@
             transition: all 0.2s;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            outline: none; /* Sem contorno feio */
+            outline: none;
         }
         
         .cta-button:active { transform: scale(0.98); background-color: var(--dark-orange); }
@@ -165,30 +165,48 @@
         let botCarregado = false;
 
         window.iniciarSistema = function() {
+            // Evita clique duplo
             if (botCarregado) return;
             botCarregado = true;
 
-            // 1. Muda estado do botão (Feedback)
+            // 1. Muda estado do botão para dar feedback visual
             const btn = document.querySelector('.cta-button');
-            btn.innerHTML = "Carregando sistema... 🔄";
+            btn.innerHTML = "Iniciando sistema... 🔄";
             btn.style.backgroundColor = "#1F2937"; // Cinza escuro
             btn.style.boxShadow = "none";
             btn.style.animation = "none";
+            btn.style.cursor = "default";
 
-            // 2. INICIA O TYPEBOT (Aqui gasta o crédito)
-            // ⚠️ COLOQUE SEU ID AQUI ABAIXO ⚠️
-            Typebot.initStandard({
-                typebot: "https://typebot.co/my-typebot-mkagode", 
-                apiHost: "https://typebot.io",
-            });
+            // 2. INICIA O TYPEBOT (Configuração Corrigida)
+            try {
+                Typebot.initStandard({
+                    // ✅ CORREÇÃO: Apenas o "slug" (nome) do bot, sem https://
+                    typebot: "my-typebot-mkagode", 
+                    
+                    // ✅ Se você usa a nuvem oficial (typebot.io), mantenha assim.
+                    // Se usa servidor próprio (VPS), troque para: "https://viewer.seudominio.com"
+                    apiHost: "https://typebot.io",
+                });
+            } catch (error) {
+                console.error("Erro ao carregar Typebot:", error);
+                alert("Erro de conexão. Verifique sua internet.");
+                botCarregado = false; // Permite tentar de novo se der erro
+                return;
+            }
 
-            // 3. Aguarda 1.2s e sobe a tela
+            // 3. Aguarda 1.2s para a animação do botão e sobe a tela
             setTimeout(() => {
-                document.getElementById('welcome-screen').style.transform = 'translateY(-100%)';
-                document.getElementById('app-header').style.opacity = '1';
+                const welcomeScreen = document.getElementById('welcome-screen');
+                const appHeader = document.getElementById('app-header');
                 
-                // Muda a cor da barra do navegador para branco
-                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+                if(welcomeScreen && appHeader) {
+                    welcomeScreen.style.transform = 'translateY(-100%)';
+                    appHeader.style.opacity = '1';
+                    
+                    // Muda a cor da barra do navegador mobile para branco (estilo app)
+                    const metaTheme = document.querySelector('meta[name="theme-color"]');
+                    if(metaTheme) metaTheme.setAttribute('content', '#ffffff');
+                }
             }, 1200);
         }
     </script>
